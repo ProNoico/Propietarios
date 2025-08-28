@@ -1,10 +1,3 @@
-// app.js
-
-// ===================================================================================
-// CONFIGURACIÓN DE SUPABASE
-// ===================================================================================
-// ¡CORRECCIÓN! Se usan marcadores de posición en lugar de las claves reales.
-// Netlify reemplazará estos textos durante el despliegue.
 const SUPABASE_URL = '__SUPABASE_URL__';
 const SUPABASE_ANON_KEY = '__SUPABASE_ANON_KEY__';
 
