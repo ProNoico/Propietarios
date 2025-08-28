@@ -1,64 +1,21 @@
-:root {
-  /* Tema oscuro forzado por defecto */
-  --background: oklch(0.15 0.007 250);
-  --foreground: oklch(0.9288 0.0126 255.5078);
-  --card: oklch(0.18 0.008 250);
-  --card-foreground: oklch(0.9288 0.0126 255.5078);
-  --popover: oklch(0.12 0.006 250);
-  --popover-foreground: oklch(0.9288 0.0126 255.5078);
-  --primary: oklch(0.6801 0.1583 276.9349);
-  --primary-foreground: oklch(0.95 0.01 276);
-  --secondary: oklch(0.25 0.007 250);
-  --secondary-foreground: oklch(0.8717 0.0093 258.3382);
-  --muted: oklch(0.2801 0.0080 59.3379);
-  --muted-foreground: oklch(0.6 0.019 261);
-  --accent: oklch(0.25 0.007 250);
-  --accent-foreground: oklch(0.8717 0.0093 258.3382);
-  --destructive: oklch(0.5 0.15 25.33);
-  --destructive-foreground: oklch(0.9, 0.01, 25.33);
-  --border: oklch(0.25 0.007 250);
-  --input: oklch(0.25 0.007 250);
-  --ring: oklch(0.6801 0.1583 276.9349);
-  --sidebar: oklch(0.12 0.006 250);
-  --sidebar-foreground: oklch(0.9288 0.0126 255.5078);
-  --sidebar-primary: oklch(0.6801 0.1583 276.9349);
-  --sidebar-primary-foreground: oklch(0.2244 0.0074 67.4370);
-  --sidebar-accent: oklch(0.18 0.008 250);
-  --sidebar-accent-foreground: oklch(0.9288 0.0126 255.5078);
-  --sidebar-border: oklch(0.25 0.007 250);
-}
-
+/* Fuente principal para el cuerpo del documento */
 body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    background-color: var(--background);
-    color: var(--foreground);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    font-family: 'Inter', sans-serif;
 }
 
-/* Estilos para formularios en el modal y login */
-#modal-form input, #modal-form select, #modal-form textarea,
-#auth-form input {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid var(--border);
-    background-color: var(--input);
-    color: var(--foreground);
-    border-radius: 0.5rem;
-    transition: all 0.2s;
+/* Estilo personalizado para la barra de desplazamiento */
+::-webkit-scrollbar {
+    width: 8px;
 }
-
-#modal-form input:focus, #modal-form select:focus, #modal-form textarea:focus,
-#auth-form input:focus {
-    outline: none;
-    border-color: var(--ring);
-    box-shadow: 0 0 0 2px var(--ring);
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
 }
-
-/* Estilo activo para links de navegación */
-.nav-link.bg-gray-900 {
-    background-color: var(--sidebar-accent) !important;
-    color: var(--sidebar-accent-foreground) !important;
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
 /* Ocultar secciones de contenido por defecto */
@@ -69,29 +26,4 @@ body {
 /* Mostrar la sección que tiene la clase 'active' */
 .content-section.active {
     display: block;
-}
-
-/* Estilos para las filas de las tablas */
-#inmuebles-table-body tr, #inquilinos-table-body tr, #recibos-table-body tr, #mantenimiento-table-body tr {
-    border-bottom: 1px solid var(--border);
-    transition: background-color 0.2s;
-}
-
-#inmuebles-table-body tr:hover, #inquilinos-table-body tr:hover, #recibos-table-body tr:hover, #mantenimiento-table-body tr:hover {
-    background-color: var(--accent);
-}
-
-/* Estilo personalizado para la barra de desplazamiento */
-::-webkit-scrollbar {
-    width: 8px;
-}
-::-webkit-scrollbar-track {
-    background: var(--sidebar);
-}
-::-webkit-scrollbar-thumb {
-    background: #555;
-    border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: #777;
 }
