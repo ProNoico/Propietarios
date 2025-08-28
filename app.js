@@ -597,3 +597,43 @@ supabaseClient.auth.onAuthStateChange((event, session) => {
         mainView.style.display = 'none';
     }
 });
+// Event Listeners
+document.addEventListener('DOMContentLoaded', () => {
+    // ... tus event listeners existentes para login, modales, etc...
+
+    // --- INICIO: LÓGICA PARA NAVEGACIÓN MÓVIL ---
+
+    // Función para abrir el menú
+    const openMobileMenu = () => {
+        sidebar.classList.remove('-translate-x-full');
+        mobileMenuOverlay.classList.remove('hidden');
+    };
+
+    // Función para cerrar el menú
+    const closeMobileMenu = () => {
+        sidebar.classList.add('-translate-x-full');
+        mobileMenuOverlay.classList.add('hidden');
+    };
+
+    // Event listeners para los botones
+    mobileMenuButton.addEventListener('click', openMobileMenu);
+    mobileMenuCloseButton.addEventListener('click', closeMobileMenu);
+    mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+
+    // Modificación del listener de los enlaces de navegación
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const sectionId = e.currentTarget.dataset.section;
+            showSection(sectionId);
+            loadDataForSection(sectionId);
+            
+            // Cierra el menú si estamos en vista móvil
+            if (window.innerWidth < 768) { // 768px es el breakpoint 'md' de Tailwind
+                closeMobileMenu();
+            }
+        });
+    });
+
+    // --- FIN: LÓGICA PARA NAVEGACIÓN MÓVIL ---
+});
