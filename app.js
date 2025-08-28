@@ -1,9 +1,12 @@
+// app.js
+
 // ===================================================================================
 // CONFIGURACIÓN DE SUPABASE
 // ===================================================================================
-// IMPORTANTE: Reemplaza los siguientes valores con tu URL y tu clave anónima (anon key) de Supabase.
-const SUPABASE_URL = 'https://njifghuuupkbqddoypmm.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5qaWZnaHV1dXBrYnFkZG95cG1tIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYzMzY3NjksImV4cCI6MjA3MTkxMjc2OX0.ISsWp3A5NqWSZcosPfma0kdg66FbSr1cSJNs6ZNHHSQ';
+// ¡CORRECCIÓN! Se usan marcadores de posición en lugar de las claves reales.
+// Netlify reemplazará estos textos durante el despliegue.
+const SUPABASE_URL = '__SUPABASE_URL__';
+const SUPABASE_ANON_KEY = '__SUPABASE_ANON_KEY__';
 
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 

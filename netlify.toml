@@ -1,0 +1,16 @@
+# netlify.toml
+
+# Configuración del proceso de despliegue (build)
+[build]
+  # Comando que Netlify ejecutará para desplegar tu sitio.
+  # Reemplaza los marcadores en app.js con las variables de entorno.
+  command = "sed -i 's|__SUPABASE_URL__|'$SUPABASE_URL'|g' app.js && sed -i 's|__SUPABASE_ANON_KEY__|'$SUPABASE_ANON_KEY'|g' app.js"
+  
+  # Carpeta que Netlify publicará después de ejecutar el comando.
+  publish = "."
+
+# Opcional: Redirección para que funcione como una Single Page App
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

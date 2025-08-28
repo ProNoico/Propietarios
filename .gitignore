@@ -1,0 +1,32 @@
+# .gitignore
+
+# Ignorar archivos de variables de entorno que contienen secretos
+# ¡Esta es la línea más importante para tu seguridad!
+.env
+.env.local
+.env.*.local
+
+# Ignorar la carpeta de dependencias de Node.js
+# La añadirás si en el futuro usas herramientas como Vite
+node_modules/
+
+# Ignorar carpetas de compilación y producción
+dist/
+build/
+.output/
+.vercel/
+.netlify/
+
+# Ignorar archivos de registro (logs)
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Ignorar archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Ignorar carpetas de configuración del editor de código
+.vscode/
+.idea/
