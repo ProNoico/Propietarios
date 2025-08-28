@@ -40,6 +40,11 @@ const inmueblesDisponiblesEl = document.getElementById('inmuebles-disponibles');
 const inquilinosActivosEl = document.getElementById('inquilinos-activos');
 const recibosPendientesEl = document.getElementById('recibos-pendientes');
 const montoPendienteEl = document.getElementById('monto-pendiente');
+// NUEVOS SELECTORES PARA NAVEGACIÓN MÓVIL
+const sidebar = document.getElementById('sidebar');
+const mobileMenuButton = document.getElementById('mobile-menu-button');
+const mobileMenuCloseButton = document.getElementById('mobile-menu-close-button');
+const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
 
 // ===================================================================================
 // ESTADO DE LA APLICACIÓN
