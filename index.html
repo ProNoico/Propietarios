@@ -3,23 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Gestión de Alquileres</title>
+    <title>Panel de Control - AlquiFlow</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-gray-100 text-gray-800">
 
     <div id="app-container">
 
-        <div id="auth-view" class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+        <div id="auth-view" class="min-h-screen flex items-center justify-center">
             <div class="max-w-md w-full space-y-8 p-10 bg-white rounded-xl shadow-lg">
                 <div>
                     <h2 id="auth-title" class="mt-6 text-center text-3xl font-extrabold text-gray-900">Inicia sesión en tu cuenta</h2>
@@ -28,18 +23,15 @@
                     <div class="rounded-md shadow-sm -space-y-px">
                         <div>
                             <label for="email-address" class="sr-only">Correo electrónico</label>
-                            <input id="email-address" name="email" type="email" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Correo electrónico">
+                            <input id="email-address" name="email" type="email" autocomplete="email" required class="w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                         </div>
                         <div>
                             <label for="password" class="sr-only">Contraseña</label>
-                            <input id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Contraseña">
+                            <input id="password" name="password" type="password" autocomplete="current-password" required class="w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                         </div>
                     </div>
-
                     <div>
-                        <button type="submit" id="submit-button" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            Iniciar Sesión
-                        </button>
+                        <button type="submit" id="submit-button" class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">Iniciar Sesión</button>
                     </div>
                 </form>
                 <p id="auth-error" class="mt-2 text-center text-sm text-red-600"></p>
@@ -49,119 +41,185 @@
         <div id="main-view" class="hidden">
             <div class="relative min-h-screen md:flex">
 
-                <div id="mobile-menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-10 hidden md:hidden"></div>
+                <div id="mobile-menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-20 hidden md:hidden"></div>
 
-                <header class="bg-gray-800 text-white flex justify-between items-center p-4 sticky top-0 z-10 md:hidden">
-                    <span class="text-xl font-bold">Gestión PRO</span>
-                    <button id="mobile-menu-button" class="p-2 rounded-md focus:outline-none focus:bg-gray-700">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </header>
-                
-                <aside id="sidebar" class="bg-gray-800 text-white w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition-transform duration-200 ease-in-out z-20 flex flex-col">
-                    <div class="h-16 flex items-center justify-between px-4">
-                        <span class="text-2xl font-bold">Gestión PRO</span>
-                        <button id="mobile-menu-close-button" class="p-2 rounded-md md:hidden">
-                             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
-                        </button>
+                <aside id="sidebar" class="w-64 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition-transform duration-200 ease-in-out z-30 flex flex-col">
+                    <div class="h-20 flex items-center px-6">
+                        <h1 class="text-2xl font-bold" style="color: var(--primary);">InmoCMS</h1>
                     </div>
                     <nav class="flex-1 px-4 space-y-2">
-                        <a href="#" data-section="dashboard" class="nav-link flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md">
-                            <svg class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-                            Dashboard
+                        <p class="px-4 pt-4 pb-2 text-xs font-semibold text-gray-400 uppercase">Menú Principal</p>
+                        <a href="#" data-section="dashboard" class="nav-link flex items-center gap-3 px-4 py-2.5">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                            <span>Vista general</span>
                         </a>
-                        <a href="#" data-section="inmuebles" class="nav-link flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md">
-                             <svg class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-                            Inmuebles
+                        <a href="#" data-section="inmuebles" class="nav-link flex items-center gap-3 px-4 py-2.5">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-5"/><path d="M9 17H5a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-4"/><path d="M18 17h-2.26a1 1 0 0 1-.95-.69L14 14"/><path d="m10 14-1.05-2.31A1 1 0 0 1 8.74 11H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-3.74a1 1 0 0 1-.95.69L14 14"/><path d="m6 14 1.05-2.31A1 1 0 0 0 7.26 11H10"/></svg>
+                            <span>Inmuebles</span>
                         </a>
-                        <a href="#" data-section="inquilinos" class="nav-link flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md">
-                           <svg class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-                            Inquilinos
+                        <a href="#" data-section="inquilinos" class="nav-link flex items-center gap-3 px-4 py-2.5">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            <span>Inquilinos</span>
                         </a>
-                        <a href="#" data-section="recibos" class="nav-link flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md">
-                            <svg class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                            Recibos
+                        <a href="#" data-section="recibos" class="nav-link flex items-center gap-3 px-4 py-2.5">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                            <span>Recibos</span>
                         </a>
-                        <a href="#" data-section="mantenimiento" class="nav-link flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md">
-                           <svg class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"/></svg>
-                            Mantenimiento
+                        <a href="#" data-section="mantenimiento" class="nav-link flex items-center gap-3 px-4 py-2.5">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 0 2l-.15.08a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1 0-2l.15-.08a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+                            <span>Mantenimiento</span>
                         </a>
-                        <a href="#" data-section="plantillas" class="nav-link flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md">
-                            <svg class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
-                            Plantillas
+                        <a href="#" data-section="plantillas" class="nav-link flex items-center gap-3 px-4 py-2.5">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            <span>Plantillas</span>
                         </a>
                     </nav>
-                    <div class="mt-auto p-4 border-t border-gray-700">
-                         <button id="logout-button" class="w-full flex items-center justify-center px-4 py-2 text-gray-300 hover:bg-red-700 hover:text-white rounded-md">
-                            <svg class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
-                            Cerrar Sesión
+                    <div class="mt-auto p-4">
+                        <button id="logout-button" class="w-full flex items-center justify-center gap-3 px-4 py-2.5 rounded-md text-red-500 hover:bg-red-500 hover:text-white transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+                            <span>Cerrar Sesión</span>
                         </button>
                     </div>
                 </aside>
-
-                <main class="flex-1 p-6 overflow-y-auto">
-                    <section id="dashboard" class="content-section">
-                        <h1 class="text-3xl font-bold text-gray-900 mb-6">Dashboard</h1>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                            <div class="bg-white p-6 rounded-lg shadow-md"><h3 class="text-lg font-semibold text-gray-600">Inmuebles Totales</h3><p id="total-inmuebles" class="text-3xl font-bold text-indigo-600">0</p></div>
-                            <div class="bg-white p-6 rounded-lg shadow-md"><h3 class="text-lg font-semibold text-gray-600">Inmuebles Ocupados</h3><p id="inmuebles-ocupados" class="text-3xl font-bold text-green-600">0</p></div>
-                            <div class="bg-white p-6 rounded-lg shadow-md"><h3 class="text-lg font-semibold text-gray-600">Inmuebles Disponibles</h3><p id="inmuebles-disponibles" class="text-3xl font-bold text-blue-600">0</p></div>
-                            <div class="bg-white p-6 rounded-lg shadow-md"><h3 class="text-lg font-semibold text-gray-600">Inquilinos Activos</h3><p id="inquilinos-activos" class="text-3xl font-bold text-yellow-600">0</p></div>
-                            <div class="bg-white p-6 rounded-lg shadow-md col-span-1 md:col-span-2"><h3 class="text-lg font-semibold text-gray-600">Recibos Pendientes</h3><p id="recibos-pendientes" class="text-3xl font-bold text-red-600">0</p></div>
-                            <div class="bg-white p-6 rounded-lg shadow-md col-span-1 md:col-span-2"><h3 class="text-lg font-semibold text-gray-600">Monto Pendiente de Cobro</h3><p id="monto-pendiente" class="text-3xl font-bold text-red-600">$0.00</p></div>
+                
+                <div class="flex-1 flex flex-col">
+                    <header class="top-bar h-20 flex items-center justify-between px-8">
+                        <div class="flex items-center gap-4">
+                            <button id="mobile-menu-button" class="p-2 -ml-2 rounded-md md:hidden">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                            </button>
+                            <h2 class="text-xl font-semibold">Panel de Control</h2>
                         </div>
-                    </section>
-                    
-                    <section id="inmuebles" class="content-section">
-                        <div class="flex justify-between items-center mb-6"><h1 class="text-3xl font-bold text-gray-900">Gestión de Inmuebles</h1><button id="add-inmueble-btn" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Añadir Inmueble</button></div>
-                        <div class="bg-white p-6 rounded-lg shadow-md overflow-x-auto"><table class="w-full text-left"><thead><tr class="border-b"><th class="p-4">Nombre</th><th class="p-4">Dirección</th><th class="p-4">Tipo</th><th class="p-4">Estado</th><th class="p-4">Acciones</th></tr></thead><tbody id="inmuebles-table-body"></tbody></table></div>
-                    </section>
+                        <div class="flex items-center gap-4">
+                            <div class="relative hidden md:block">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                                <input type="search" placeholder="Buscar..." class="search-input w-full md:w-[200px] lg:w-[300px] pl-10 pr-4 py-2">
+                            </div>
+                            <button class="icon-button relative">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+                                <span class="absolute -top-1 -right-1 flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span></span>
+                            </button>
+                            <div class="user-profile flex items-center gap-2 p-1 pr-3">
+                                <img src="https://avatar.vercel.sh/laura-gomez" alt="Laura Gomez" class="w-8 h-8 rounded-full">
+                                <div class="hidden md:block">
+                                    <p class="text-sm font-semibold">Laura Gomez</p>
+                                    <p class="text-xs text-gray-500">Propietaria</p>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
 
-                    <section id="inquilinos" class="content-section">
-                         <div class="flex justify-between items-center mb-6"><h1 class="text-3xl font-bold text-gray-900">Gestión de Inquilinos</h1><button id="add-inquilino-btn" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Añadir Inquilino</button></div>
-                        <div class="bg-white p-6 rounded-lg shadow-md overflow-x-auto"><table class="w-full text-left"><thead><tr class="border-b"><th class="p-4">Nombre Completo</th><th class="p-4">DNI</th><th class="p-4">Teléfono</th><th class="p-4">Email</th><th class="p-4">Inmueble Asignado</th><th class="p-4">Estado</th><th class="p-4">Acciones</th></tr></thead><tbody id="inquilinos-table-body"></tbody></table></div>
-                    </section>
+                    <main class="flex-1 p-4 md:p-8 overflow-y-auto">
+                        
+                        <section id="dashboard" class="content-section">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                                <div class="stat-card">
+                                    <div class="stat-card-icon bg-c1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10V5.5a2.5 2.5 0 0 0-5 0V10"/><path d="M4 10V5.5a2.5 2.5 0 0 1 5 0V10"/><path d="M12 2v3m0 16v3"/><path d="M10 20.5a2.5 2.5 0 0 0 5 0V14a2.5 2.5 0 0 0-5 0v6.5Z"/><path d="M4 14.5a2.5 2.5 0 0 0 5 0V10H4v4.5Z"/><path d="M20 14.5a2.5 2.5 0 0 0-5 0V10h5v4.5Z"/></svg></div>
+                                    <h3 class="mt-4">Inmuebles Totales</h3>
+                                    <p id="total-inmuebles">0</p>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-card-icon bg-c2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+                                    <h3 class="mt-4">Inquilinos Activos</h3>
+                                    <p id="inquilinos-activos">0</p>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-card-icon bg-c3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 17v-1a2 2 0 1 1 4 0v1"/><path d="M14 11.5V14h-4v-2.5"/><path d="M10 14h4"/></svg></div>
+                                    <h3 class="mt-4">Recibos Pendientes</h3>
+                                    <p id="recibos-pendientes">0</p>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-card-icon bg-c4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H7"/></svg></div>
+                                    <h3 class="mt-4">Monto Pendiente</h3>
+                                    <p id="monto-pendiente">$0</p>
+                                </div>
+                            </div>
 
-                    <section id="recibos" class="content-section">
-                         <div class="flex justify-between items-center mb-6"><h1 class="text-3xl font-bold text-gray-900">Gestión de Recibos</h1><button id="add-recibo-btn" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Crear Recibo</button></div>
-                        <div class="bg-white p-6 rounded-lg shadow-md overflow-x-auto"><table class="w-full text-left"><thead><tr class="border-b"><th class="p-4">Inmueble</th><th class="p-4">Inquilino</th><th class="p-4">Fecha Emisión</th><th class="p-4">Mes Alquiler</th><th class="p-4">Total a Cobrar</th><th class="p-4">Estado</th><th class="p-4">Acciones</th></tr></thead><tbody id="recibos-table-body"></tbody></table></div>
-                    </section>
+                            <div class="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
+                                <div class="lg:col-span-2 content-card">
+                                    <h3 class="font-semibold mb-4">Estadísticas de Ventas (Ejemplo)</h3>
+                                    <p class="text-gray-500">Aquí se mostrará un gráfico con la evolución de los alquileres.</p>
+                                    <div class="h-64 bg-gray-100 mt-4 rounded-md flex items-center justify-center">Gráfico no implementado</div>
+                                </div>
+                                <div class="content-card">
+                                    <h3 class="font-semibold mb-4">Tipos de Inmuebles (Ejemplo)</h3>
+                                    <p class="text-gray-500">Aquí se mostrará un gráfico circular.</p>
+                                    <div class="h-64 bg-gray-100 mt-4 rounded-md flex items-center justify-center">Gráfico no implementado</div>
+                                </div>
+                            </div>
+                        </section>
+                        
+                        <section id="inmuebles" class="content-section">
+                            <div class="flex justify-between items-center mb-6">
+                                <h1 class="text-2xl font-bold text-gray-900">Gestión de Inmuebles</h1>
+                                <button id="add-inmueble-btn" class="primary-btn">Añadir Inmueble</button>
+                            </div>
+                            <div class="content-card overflow-x-auto">
+                                <table><thead><tr><th>Nombre</th><th>Dirección</th><th>Tipo</th><th>Estado</th><th>Acciones</th></tr></thead><tbody id="inmuebles-table-body"></tbody></table>
+                            </div>
+                        </section>
 
-                    <section id="mantenimiento" class="content-section">
-                         <div class="flex justify-between items-center mb-6"><h1 class="text-3xl font-bold text-gray-900">Solicitudes de Mantenimiento</h1><button id="add-mantenimiento-btn" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Crear Solicitud</button></div>
-                        <div class="bg-white p-6 rounded-lg shadow-md overflow-x-auto"><table class="w-full text-left"><thead><tr class="border-b"><th class="p-4">Inmueble</th><th class="p-4">Descripción</th><th class="p-4">Fecha Reporte</th><th class="p-4">Estado</th><th class="p-4">Acciones</th></tr></thead><tbody id="mantenimiento-table-body"></tbody></table></div>
-                    </section>
+                        <section id="inquilinos" class="content-section">
+                             <div class="flex justify-between items-center mb-6">
+                                <h1 class="text-2xl font-bold text-gray-900">Gestión de Inquilinos</h1>
+                                <button id="add-inquilino-btn" class="primary-btn">Añadir Inquilino</button>
+                            </div>
+                            <div class="content-card overflow-x-auto">
+                                <table><thead><tr><th>Nombre Completo</th><th>DNI</th><th>Teléfono</th><th>Email</th><th>Inmueble</th><th>Estado</th><th>Acciones</th></tr></thead><tbody id="inquilinos-table-body"></tbody></table>
+                            </div>
+                        </section>
 
-                    <section id="plantillas" class="content-section">
-                        <div class="flex justify-between items-center mb-6"><h1 class="text-3xl font-bold text-gray-900">Plantillas de Comunicación</h1><button id="add-plantilla-btn" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Crear Plantilla</button></div>
-                        <div id="plantillas-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-                    </section>
-                </main>
-            </div>
-        </div>
-        
-        <div id="modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden z-50">
-            <div class="relative top-20 mx-auto p-5 border w-full max-w-2xl shadow-lg rounded-md bg-white">
-                <div class="mt-3 text-center">
-                    <h3 class="text-2xl leading-6 font-bold text-gray-900" id="modal-title"></h3>
-                    <div class="mt-4 px-7 py-3"><form id="modal-form" class="space-y-4 text-left"></form></div>
-                    <div class="items-center px-4 py-3">
-                        <button id="modal-submit-btn" class="px-4 py-2 bg-indigo-600 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">Guardar</button>
-                        <button id="modal-close-btn" class="mt-2 px-4 py-2 bg-gray-200 text-gray-800 text-base font-medium rounded-md w-full shadow-sm hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500">Cancelar</button>
-                    </div>
+                        <section id="recibos" class="content-section">
+                            <div class="flex justify-between items-center mb-6">
+                                <h1 class="text-2xl font-bold text-gray-900">Gestión de Recibos</h1>
+                                <button id="add-recibo-btn" class="primary-btn">Crear Recibo</button>
+                            </div>
+                            <div class="content-card overflow-x-auto">
+                                <table><thead><tr><th>Inmueble</th><th>Inquilino</th><th>F. Emisión</th><th>Mes</th><th>Total</th><th>Estado</th><th>Acciones</th></tr></thead><tbody id="recibos-table-body"></tbody></table>
+                            </div>
+                        </section>
+
+                        <section id="mantenimiento" class="content-section">
+                             <div class="flex justify-between items-center mb-6">
+                                <h1 class="text-2xl font-bold text-gray-900">Mantenimiento</h1>
+                                <button id="add-mantenimiento-btn" class="primary-btn">Crear Solicitud</button>
+                            </div>
+                            <div class="content-card overflow-x-auto">
+                               <table><thead><tr><th>Inmueble</th><th>Descripción</th><th>F. Reporte</th><th>Estado</th><th>Acciones</th></tr></thead><tbody id="mantenimiento-table-body"></tbody></table>
+                            </div>
+                        </section>
+
+                        <section id="plantillas" class="content-section">
+                            <div class="flex justify-between items-center mb-6">
+                                <h1 class="text-2xl font-bold text-gray-900">Plantillas</h1>
+                                <button id="add-plantilla-btn" class="primary-btn">Crear Plantilla</button>
+                            </div>
+                            <div id="plantillas-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                </div>
+                        </section>
+                    </main>
                 </div>
             </div>
         </div>
         
-        <div id="toast" class="fixed bottom-5 right-5 bg-green-500 text-white py-2 px-4 rounded-lg shadow-lg hidden transition-opacity duration-300">
+        <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden flex items-center justify-center p-4">
+            <div class="bg-white w-full max-w-2xl shadow-lg rounded-2xl">
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold" id="modal-title"></h3>
+                    <div class="mt-6"><form id="modal-form" class="space-y-4"></form></div>
+                </div>
+                <div class="px-6 py-4 bg-gray-50 flex justify-end gap-3 rounded-b-2xl">
+                    <button id="modal-close-btn" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300">Cancelar</button>
+                    <button id="modal-submit-btn" class="primary-btn">Guardar</button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="toast" class="fixed bottom-5 right-5 text-white py-2 px-4 rounded-lg shadow-lg hidden">
             <p id="toast-message"></p>
         </div>
-
     </div>
 
     <script src="app.js"></script>
-
 </body>
 </html>

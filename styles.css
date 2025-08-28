@@ -1,29 +1,189 @@
-/* Fuente principal para el cuerpo del documento */
+/* FUENTES Y VARIABLES DE COLOR */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  --background: oklch(0.98 0.002 48.71);
+  --foreground: oklch(0.2795 0.0368 260.03);
+  --card: oklch(1 0 0); /* Blanco puro para las tarjetas */
+  --card-foreground: oklch(0.2795 0.0368 260.03);
+  --primary: oklch(0.5854 0.2041 277.11);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.95 0.004 56.36);
+  --secondary-foreground: oklch(0.4461 0.0263 256.80);
+  --muted: oklch(0.96 0.002 48.71);
+  --muted-foreground: oklch(0.5510 0.0234 264.36);
+  --border: oklch(0.92 0.004 56.36);
+  --ring: oklch(0.5854 0.2041 277.11);
+  
+  --chart-1: oklch(0.5854 0.2041 277.11); /* Primary */
+  --chart-2: oklch(0.70 0.20 50); /* Naranja/Rojo */
+  --chart-3: oklch(0.75 0.18 150); /* Verde */
+  --chart-4: oklch(0.65 0.22 260); /* Azul */
+
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --radius: 1rem;
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+/* ESTILOS BASE */
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-sans);
+    background-color: var(--background);
+    color: var(--foreground);
 }
 
-/* Estilo personalizado para la barra de desplazamiento */
-::-webkit-scrollbar {
-    width: 8px;
-}
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: #555;
+/* SCROLLBAR PERSONALIZADO */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--background); }
+::-webkit-scrollbar-thumb { background: #bbb; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #999; }
+
+/* LAYOUT PRINCIPAL */
+#main-view {
+    transition: filter 0.3s ease-in-out;
 }
 
-/* Ocultar secciones de contenido por defecto */
+/* BARRA SUPERIOR (HEADER) */
+.top-bar {
+    background-color: var(--card);
+    border-bottom: 1px solid var(--border);
+}
+.search-input {
+    background-color: var(--background);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+.icon-button {
+    color: var(--muted-foreground);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.icon-button:hover {
+    background-color: var(--muted);
+}
+.user-profile {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+/* BARRA LATERAL (SIDEBAR) */
+#sidebar {
+    background-color: var(--card);
+    border-right: 1px solid var(--border);
+}
+.nav-link {
+    color: var(--muted-foreground);
+    border-radius: calc(var(--radius) - 0.25rem);
+    transition: background-color 0.2s, color 0.2s;
+}
+.nav-link:hover {
+    background-color: var(--muted);
+    color: var(--foreground);
+}
+.nav-link.active {
+    background-color: var(--primary) !important;
+    color: var(--primary-foreground) !important;
+    box-shadow: var(--shadow);
+}
+
+/* TARJETAS DEL DASHBOARD */
+.stat-card {
+    background-color: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+}
+.stat-card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+.stat-card-icon.bg-c1 { background-color: var(--chart-4); }
+.stat-card-icon.bg-c2 { background-color: var(--chart-3); }
+.stat-card-icon.bg-c3 { background-color: var(--chart-2); }
+.stat-card-icon.bg-c4 { background-color: var(--chart-1); }
+
+.stat-card h3 {
+    font-size: 0.9rem;
+    color: var(--muted-foreground);
+}
+.stat-card p {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--foreground);
+}
+
+/* CONTENIDO DE SECCIONES (Tablas, etc.) */
+.content-section.active {
+    display: block;
+}
 .content-section {
     display: none;
 }
+.content-card {
+    background-color: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+}
 
-/* Mostrar la sección que tiene la clase 'active' */
-.content-section.active {
-    display: block;
+/* BOTONES */
+.primary-btn {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    padding: 0.75rem 1.25rem;
+    border-radius: calc(var(--radius) - 0.25rem);
+    font-weight: 600;
+    transition: opacity 0.2s;
+}
+.primary-btn:hover {
+    opacity: 0.9;
+}
+
+/* ESTILOS DE TABLAS */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    text-align: left;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+th {
+    color: var(--muted-foreground);
+    font-weight: 500;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+tbody tr:hover {
+    background-color: var(--muted);
+}
+
+/* MODAL */
+#modal .bg-white {
+    background-color: var(--card);
+    border-radius: var(--radius);
+}
+#modal input, #modal select, #modal textarea {
+    background-color: var(--background);
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) - 0.5rem);
+    padding: 0.75rem;
+}
+#modal input:focus, #modal select:focus, #modal textarea:focus {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
 }
