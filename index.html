@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -20,24 +20,22 @@
     <div id="app-container">
 
         <div id="auth-view" class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-            <div class="max-w-md w-full space-y-8 p-10 bg-[var(--card)] rounded-2xl shadow-lg">
+            <div class="max-w-md w-full space-y-8 p-10 bg-[var(--card)] rounded-2xl shadow-lg border border-[var(--border)]">
                 <div>
                     <h2 id="auth-title" class="mt-6 text-center text-3xl font-extrabold text-[var(--card-foreground)]">Inicia sesión en tu cuenta</h2>
                 </div>
                 <form id="auth-form" class="mt-8 space-y-6">
-                    <div class="rounded-md -space-y-px">
-                        <div>
-                            <label for="email-address" class="sr-only">Correo electrónico</label>
-                            <input id="email-address" name="email" type="email" autocomplete="email" required placeholder="Correo electrónico">
-                        </div>
-                        <div>
-                            <label for="password" class="sr-only">Contraseña</label>
-                            <input id="password" name="password" type="password" autocomplete="current-password" required placeholder="Contraseña">
-                        </div>
+                    <div>
+                        <label for="email-address" class="sr-only">Correo electrónico</label>
+                        <input id="email-address" name="email" type="email" autocomplete="email" required placeholder="Correo electrónico" class="rounded-t-md">
+                    </div>
+                    <div>
+                        <label for="password" class="sr-only">Contraseña</label>
+                        <input id="password" name="password" type="password" autocomplete="current-password" required placeholder="Contraseña" class="rounded-b-md">
                     </div>
 
                     <div>
-                        <button type="submit" id="submit-button" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-[var(--primary-foreground)] bg-[var(--primary)] hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--ring)]">
+                        <button type="submit" id="submit-button" class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-[var(--primary-foreground)] bg-[var(--primary)] hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[var(--card)] focus:ring-[var(--ring)]">
                             Iniciar Sesión
                         </button>
                     </div>
@@ -51,16 +49,16 @@
 
                 <div id="mobile-menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-10 hidden md:hidden"></div>
 
-                <header class="bg-[var(--sidebar)] text-[var(--sidebar-foreground)] flex justify-between items-center p-4 sticky top-0 z-10 md:hidden">
+                <header class="bg-[var(--sidebar)] text-[var(--sidebar-foreground)] flex justify-between items-center p-4 sticky top-0 z-10 md:hidden border-b border-[var(--border)]">
                     <span class="text-xl font-bold">Gestión PRO</span>
-                    <button id="mobile-menu-button" class="p-2 rounded-md focus:outline-none focus:bg-gray-700">
+                    <button id="mobile-menu-button" class="p-2 rounded-md focus:outline-none focus:bg-[var(--sidebar-accent)]">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
                     </button>
                 </header>
                 
-                <aside id="sidebar" class="bg-[var(--sidebar)] text-[var(--sidebar-foreground)] w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition-transform duration-200 ease-in-out z-20 flex flex-col">
+                <aside id="sidebar" class="bg-[var(--sidebar)] text-[var(--sidebar-foreground)] w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition-transform duration-200 ease-in-out z-20 flex flex-col border-r border-[var(--border)]">
                     <div class="h-16 flex items-center justify-between px-4">
                         <span class="text-2xl font-bold">Gestión PRO</span>
                         <button id="mobile-menu-close-button" class="p-2 rounded-md md:hidden">
@@ -68,74 +66,74 @@
                         </button>
                     </div>
                     <nav class="flex-1 px-4 space-y-2">
-                        <a href="#" data-section="dashboard" class="nav-link flex items-center px-4 py-2 hover:bg-[var(--sidebar-accent)] hover:text-[var(--sidebar-accent-foreground)] rounded-md">
-                            <svg class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                        <a href="#" data-section="dashboard" class="nav-link flex items-center px-4 py-2 hover:bg-[var(--sidebar-accent)] hover:text-[var(--sidebar-accent-foreground)] rounded-md font-medium">
+                            <svg class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
                             Dashboard
                         </a>
-                        <a href="#" data-section="inmuebles" class="nav-link flex items-center px-4 py-2 hover:bg-[var(--sidebar-accent)] hover:text-[var(--sidebar-accent-foreground)] rounded-md">
-                             <svg class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                        <a href="#" data-section="inmuebles" class="nav-link flex items-center px-4 py-2 hover:bg-[var(--sidebar-accent)] hover:text-[var(--sidebar-accent-foreground)] rounded-md font-medium">
+                             <svg class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
                             Inmuebles
                         </a>
-                        <a href="#" data-section="inquilinos" class="nav-link flex items-center px-4 py-2 hover:bg-[var(--sidebar-accent)] hover:text-[var(--sidebar-accent-foreground)] rounded-md">
-                           <svg class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                        <a href="#" data-section="inquilinos" class="nav-link flex items-center px-4 py-2 hover:bg-[var(--sidebar-accent)] hover:text-[var(--sidebar-accent-foreground)] rounded-md font-medium">
+                           <svg class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
                             Inquilinos
                         </a>
-                        <a href="#" data-section="recibos" class="nav-link flex items-center px-4 py-2 hover:bg-[var(--sidebar-accent)] hover:text-[var(--sidebar-accent-foreground)] rounded-md">
-                            <svg class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                        <a href="#" data-section="recibos" class="nav-link flex items-center px-4 py-2 hover:bg-[var(--sidebar-accent)] hover:text-[var(--sidebar-accent-foreground)] rounded-md font-medium">
+                            <svg class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                             Recibos
                         </a>
-                        <a href="#" data-section="mantenimiento" class="nav-link flex items-center px-4 py-2 hover:bg-[var(--sidebar-accent)] hover:text-[var(--sidebar-accent-foreground)] rounded-md">
-                           <svg class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"/></svg>
+                        <a href="#" data-section="mantenimiento" class="nav-link flex items-center px-4 py-2 hover:bg-[var(--sidebar-accent)] hover:text-[var(--sidebar-accent-foreground)] rounded-md font-medium">
+                           <svg class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"/></svg>
                             Mantenimiento
                         </a>
-                        <a href="#" data-section="plantillas" class="nav-link flex items-center px-4 py-2 hover:bg-[var(--sidebar-accent)] hover:text-[var(--sidebar-accent-foreground)] rounded-md">
-                            <svg class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                        <a href="#" data-section="plantillas" class="nav-link flex items-center px-4 py-2 hover:bg-[var(--sidebar-accent)] hover:text-[var(--sidebar-accent-foreground)] rounded-md font-medium">
+                            <svg class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
                             Plantillas
                         </a>
                     </nav>
                     <div class="mt-auto p-4 border-t border-[var(--sidebar-border)]">
-                         <button id="logout-button" class="w-full flex items-center justify-center px-4 py-2 hover:bg-[var(--destructive)] hover:text-[var(--destructive-foreground)] rounded-md">
-                            <svg class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+                         <button id="logout-button" class="w-full flex items-center justify-center px-4 py-2 text-[var(--muted-foreground)] hover:bg-[var(--destructive)] hover:text-[var(--destructive-foreground)] rounded-md font-medium">
+                            <svg class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
                             Cerrar Sesión
                         </button>
                     </div>
                 </aside>
 
-                <main class="flex-1 p-6 overflow-y-auto">
+                <main class="flex-1 p-8 overflow-y-auto">
                     <section id="dashboard" class="content-section">
                         <h1 class="text-3xl font-bold text-[var(--foreground)] mb-6">Dashboard</h1>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                            <div class="bg-[var(--card)] p-6 rounded-2xl shadow-lg"><h3 class="text-lg font-semibold text-[var(--muted-foreground)]">Inmuebles Totales</h3><p id="total-inmuebles" class="text-3xl font-bold text-[var(--card-foreground)]">0</p></div>
-                            <div class="bg-[var(--card)] p-6 rounded-2xl shadow-lg"><h3 class="text-lg font-semibold text-[var(--muted-foreground)]">Inmuebles Ocupados</h3><p id="inmuebles-ocupados" class="text-3xl font-bold text-green-400">0</p></div>
-                            <div class="bg-[var(--card)] p-6 rounded-2xl shadow-lg"><h3 class="text-lg font-semibold text-[var(--muted-foreground)]">Inmuebles Disponibles</h3><p id="inmuebles-disponibles" class="text-3xl font-bold text-blue-400">0</p></div>
-                            <div class="bg-[var(--card)] p-6 rounded-2xl shadow-lg"><h3 class="text-lg font-semibold text-[var(--muted-foreground)]">Inquilinos Activos</h3><p id="inquilinos-activos" class="text-3xl font-bold text-yellow-400">0</p></div>
-                            <div class="bg-[var(--card)] p-6 rounded-2xl shadow-lg col-span-1 md:col-span-2"><h3 class="text-lg font-semibold text-[var(--muted-foreground)]">Recibos Pendientes</h3><p id="recibos-pendientes" class="text-3xl font-bold text-red-400">0</p></div>
-                            <div class="bg-[var(--card)] p-6 rounded-2xl shadow-lg col-span-1 md:col-span-2"><h3 class="text-lg font-semibold text-[var(--muted-foreground)]">Monto Pendiente de Cobro</h3><p id="monto-pendiente" class="text-3xl font-bold text-red-400">$0.00</p></div>
+                            <div class="bg-[var(--card)] p-6 rounded-xl border border-[var(--border)]"><h3 class="text-base font-medium text-[var(--muted-foreground)]">Inmuebles Totales</h3><p id="total-inmuebles" class="text-3xl font-bold text-[var(--card-foreground)] mt-2">0</p></div>
+                            <div class="bg-[var(--card)] p-6 rounded-xl border border-[var(--border)]"><h3 class="text-base font-medium text-[var(--muted-foreground)]">Inmuebles Ocupados</h3><p id="inmuebles-ocupados" class="text-3xl font-bold text-green-400 mt-2">0</p></div>
+                            <div class="bg-[var(--card)] p-6 rounded-xl border border-[var(--border)]"><h3 class="text-base font-medium text-[var(--muted-foreground)]">Inmuebles Disponibles</h3><p id="inmuebles-disponibles" class="text-3xl font-bold text-blue-400 mt-2">0</p></div>
+                            <div class="bg-[var(--card)] p-6 rounded-xl border border-[var(--border)]"><h3 class="text-base font-medium text-[var(--muted-foreground)]">Inquilinos Activos</h3><p id="inquilinos-activos" class="text-3xl font-bold text-yellow-400 mt-2">0</p></div>
+                            <div class="bg-[var(--card)] p-6 rounded-xl border border-[var(--border)] col-span-1 md:col-span-2"><h3 class="text-base font-medium text-[var(--muted-foreground)]">Recibos Pendientes</h3><p id="recibos-pendientes" class="text-3xl font-bold text-red-400 mt-2">0</p></div>
+                            <div class="bg-[var(--card)] p-6 rounded-xl border border-[var(--border)] col-span-1 md:col-span-2"><h3 class="text-base font-medium text-[var(--muted-foreground)]">Monto Pendiente de Cobro</h3><p id="monto-pendiente" class="text-3xl font-bold text-red-400 mt-2">$0.00</p></div>
                         </div>
                     </section>
                     
                     <section id="inmuebles" class="content-section">
-                        <div class="flex justify-between items-center mb-6"><h1 class="text-3xl font-bold text-[var(--foreground)]">Gestión de Inmuebles</h1><button id="add-inmueble-btn" class="bg-[var(--primary)] text-[var(--primary-foreground)] px-4 py-2 rounded-md hover:opacity-90">Añadir Inmueble</button></div>
-                        <div class="bg-[var(--card)] p-6 rounded-2xl shadow-lg overflow-x-auto"><table class="w-full text-left"><thead><tr class="border-b border-[var(--border)]"><th class="p-4">Nombre</th><th class="p-4">Dirección</th><th class="p-4">Tipo</th><th class="p-4">Estado</th><th class="p-4">Acciones</th></tr></thead><tbody id="inmuebles-table-body"></tbody></table></div>
+                        <div class="flex justify-between items-center mb-6"><h1 class="text-3xl font-bold text-[var(--foreground)]">Gestión de Inmuebles</h1><button id="add-inmueble-btn" class="bg-[var(--primary)] text-[var(--primary-foreground)] px-4 py-2 rounded-md hover:opacity-90 font-medium">Añadir Inmueble</button></div>
+                        <div class="bg-[var(--card)] p-6 rounded-xl border border-[var(--border)] overflow-x-auto"><table class="w-full text-left"><thead><tr class="border-b border-[var(--border)]"><th class="p-4 font-semibold">Nombre</th><th class="p-4 font-semibold">Dirección</th><th class="p-4 font-semibold">Tipo</th><th class="p-4 font-semibold">Estado</th><th class="p-4 font-semibold">Acciones</th></tr></thead><tbody id="inmuebles-table-body"></tbody></table></div>
                     </section>
 
                     <section id="inquilinos" class="content-section">
-                         <div class="flex justify-between items-center mb-6"><h1 class="text-3xl font-bold text-[var(--foreground)]">Gestión de Inquilinos</h1><button id="add-inquilino-btn" class="bg-[var(--primary)] text-[var(--primary-foreground)] px-4 py-2 rounded-md hover:opacity-90">Añadir Inquilino</button></div>
-                        <div class="bg-[var(--card)] p-6 rounded-2xl shadow-lg overflow-x-auto"><table class="w-full text-left"><thead><tr class="border-b border-[var(--border)]"><th class="p-4">Nombre Completo</th><th class="p-4">DNI</th><th class="p-4">Teléfono</th><th class="p-4">Email</th><th class="p-4">Inmueble Asignado</th><th class="p-4">Estado</th><th class="p-4">Acciones</th></tr></thead><tbody id="inquilinos-table-body"></tbody></table></div>
+                         <div class="flex justify-between items-center mb-6"><h1 class="text-3xl font-bold text-[var(--foreground)]">Gestión de Inquilinos</h1><button id="add-inquilino-btn" class="bg-[var(--primary)] text-[var(--primary-foreground)] px-4 py-2 rounded-md hover:opacity-90 font-medium">Añadir Inquilino</button></div>
+                        <div class="bg-[var(--card)] p-6 rounded-xl border border-[var(--border)] overflow-x-auto"><table class="w-full text-left"><thead><tr class="border-b border-[var(--border)]"><th class="p-4 font-semibold">Nombre</th><th class="p-4 font-semibold">DNI</th><th class="p-4 font-semibold">Teléfono</th><th class="p-4 font-semibold">Email</th><th class="p-4 font-semibold">Inmueble</th><th class="p-4 font-semibold">Estado</th><th class="p-4 font-semibold">Acciones</th></tr></thead><tbody id="inquilinos-table-body"></tbody></table></div>
                     </section>
 
                     <section id="recibos" class="content-section">
-                         <div class="flex justify-between items-center mb-6"><h1 class="text-3xl font-bold text-[var(--foreground)]">Gestión de Recibos</h1><button id="add-recibo-btn" class="bg-[var(--primary)] text-[var(--primary-foreground)] px-4 py-2 rounded-md hover:opacity-90">Crear Recibo</button></div>
-                        <div class="bg-[var(--card)] p-6 rounded-2xl shadow-lg overflow-x-auto"><table class="w-full text-left"><thead><tr class="border-b border-[var(--border)]"><th class="p-4">Inmueble</th><th class="p-4">Inquilino</th><th class="p-4">Fecha Emisión</th><th class="p-4">Mes Alquiler</th><th class="p-4">Total a Cobrar</th><th class="p-4">Estado</th><th class="p-4">Acciones</th></tr></thead><tbody id="recibos-table-body"></tbody></table></div>
+                         <div class="flex justify-between items-center mb-6"><h1 class="text-3xl font-bold text-[var(--foreground)]">Gestión de Recibos</h1><button id="add-recibo-btn" class="bg-[var(--primary)] text-[var(--primary-foreground)] px-4 py-2 rounded-md hover:opacity-90 font-medium">Crear Recibo</button></div>
+                        <div class="bg-[var(--card)] p-6 rounded-xl border border-[var(--border)] overflow-x-auto"><table class="w-full text-left"><thead><tr class="border-b border-[var(--border)]"><th class="p-4 font-semibold">Inmueble</th><th class="p-4 font-semibold">Inquilino</th><th class="p-4 font-semibold">F. Emisión</th><th class="p-4 font-semibold">Mes</th><th class="p-4 font-semibold">Total</th><th class="p-4 font-semibold">Estado</th><th class="p-4 font-semibold">Acciones</th></tr></thead><tbody id="recibos-table-body"></tbody></table></div>
                     </section>
 
                     <section id="mantenimiento" class="content-section">
-                         <div class="flex justify-between items-center mb-6"><h1 class="text-3xl font-bold text-[var(--foreground)]">Solicitudes de Mantenimiento</h1><button id="add-mantenimiento-btn" class="bg-[var(--primary)] text-[var(--primary-foreground)] px-4 py-2 rounded-md hover:opacity-90">Crear Solicitud</button></div>
-                        <div class="bg-[var(--card)] p-6 rounded-2xl shadow-lg overflow-x-auto"><table class="w-full text-left"><thead><tr class="border-b border-[var(--border)]"><th class="p-4">Inmueble</th><th class="p-4">Descripción</th><th class="p-4">Fecha Reporte</th><th class="p-4">Estado</th><th class="p-4">Acciones</th></tr></thead><tbody id="mantenimiento-table-body"></tbody></table></div>
+                         <div class="flex justify-between items-center mb-6"><h1 class="text-3xl font-bold text-[var(--foreground)]">Mantenimiento</h1><button id="add-mantenimiento-btn" class="bg-[var(--primary)] text-[var(--primary-foreground)] px-4 py-2 rounded-md hover:opacity-90 font-medium">Crear Solicitud</button></div>
+                        <div class="bg-[var(--card)] p-6 rounded-xl border border-[var(--border)] overflow-x-auto"><table class="w-full text-left"><thead><tr class="border-b border-[var(--border)]"><th class="p-4 font-semibold">Inmueble</th><th class="p-4 font-semibold">Descripción</th><th class="p-4 font-semibold">F. Reporte</th><th class="p-4 font-semibold">Estado</th><th class="p-4 font-semibold">Acciones</th></tr></thead><tbody id="mantenimiento-table-body"></tbody></table></div>
                     </section>
 
                     <section id="plantillas" class="content-section">
-                        <div class="flex justify-between items-center mb-6"><h1 class="text-3xl font-bold text-[var(--foreground)]">Plantillas de Comunicación</h1><button id="add-plantilla-btn" class="bg-[var(--primary)] text-[var(--primary-foreground)] px-4 py-2 rounded-md hover:opacity-90">Crear Plantilla</button></div>
+                        <div class="flex justify-between items-center mb-6"><h1 class="text-3xl font-bold text-[var(--foreground)]">Plantillas</h1><button id="add-plantilla-btn" class="bg-[var(--primary)] text-[var(--primary-foreground)] px-4 py-2 rounded-md hover:opacity-90 font-medium">Crear Plantilla</button></div>
                         <div id="plantillas-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
                     </section>
                 </main>
@@ -143,13 +141,13 @@
         </div>
         
         <div id="modal" class="fixed inset-0 bg-black bg-opacity-70 overflow-y-auto h-full w-full hidden z-50">
-            <div class="relative top-20 mx-auto p-5 border-none w-full max-w-2xl shadow-lg rounded-2xl bg-[var(--popover)]">
+            <div class="relative top-20 mx-auto p-5 border border-[var(--border)] w-full max-w-2xl shadow-lg rounded-2xl bg-[var(--popover)]">
                 <div class="mt-3 text-center">
-                    <h3 class="text-2xl leading-6 font-bold text-[var(--popover-foreground)]" id="modal-title"></h3>
+                    <h3 class="text-2xl leading-6 font-bold text-[var(--popover-foreground)] mb-4" id="modal-title"></h3>
                     <div class="mt-4 px-7 py-3"><form id="modal-form" class="space-y-4 text-left"></form></div>
                     <div class="items-center px-4 py-3">
-                        <button id="modal-submit-btn" class="px-4 py-2 bg-[var(--primary)] text-[var(--primary-foreground)] text-base font-medium rounded-md w-full shadow-sm hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[var(--ring)]">Guardar</button>
-                        <button id="modal-close-btn" class="mt-2 px-4 py-2 bg-[var(--secondary)] text-[var(--secondary-foreground)] text-base font-medium rounded-md w-full shadow-sm hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[var(--ring)]">Cancelar</button>
+                        <button id="modal-submit-btn" class="px-4 py-2 bg-[var(--primary)] text-[var(--primary-foreground)] text-base font-medium rounded-md w-full shadow-sm hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[var(--popover)] focus:ring-[var(--ring)]">Guardar</button>
+                        <button id="modal-close-btn" class="mt-2 px-4 py-2 bg-[var(--secondary)] text-[var(--secondary-foreground)] text-base font-medium rounded-md w-full shadow-sm hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[var(--popover)] focus:ring-[var(--ring)]">Cancelar</button>
                     </div>
                 </div>
             </div>
