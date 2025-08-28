@@ -100,13 +100,12 @@ async function handleAuthSubmit(event) {
     authError.textContent = '';
 
     try {
-        // La lógica de registro ha sido eliminada. Solo se intenta iniciar sesión.
         const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
         if (error) throw error;
         
     } catch (error) {
         console.error('Error de autenticación:', error.message);
-        authError.textContent = "Email o contraseña incorrectos."; // Mensaje más amigable
+        authError.textContent = "Email o contraseña incorrectos.";
     }
 }
 
@@ -118,7 +117,7 @@ async function handleLogout() {
 }
 
 // ===================================================================================
-// LÓGICA DE CARGA Y RENDERIZADO DE DATOS (sin cambios)
+// LÓGICA DE CARGA Y RENDERIZADO DE DATOS
 // ===================================================================================
 async function fetchAndRenderInmuebles() {
     const { data: { user } } = await supabaseClient.auth.getUser();
@@ -256,7 +255,7 @@ async function updateDashboardStats() {
 }
 
 // ===================================================================================
-// MANEJADORES DE EVENTOS (CRUD) (sin cambios)
+// MANEJADORES DE EVENTOS (CRUD)
 // ===================================================================================
 async function handleSaveInmueble() {
     const { data: { user } } = await supabaseClient.auth.getUser();
@@ -501,16 +500,7 @@ document.addEventListener('DOMContentLoaded', () => {
     logoutButton.addEventListener('click', handleLogout);
     modalCloseBtn.addEventListener('click', closeModal);
     window.addEventListener('click', (event) => { if (event.target == modal) closeModal(); });
-
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const sectionId = e.currentTarget.dataset.section;
-            showSection(sectionId);
-            loadDataForSection(sectionId);
-        });
-    });
-
+    
     addInmuebleBtn.addEventListener('click', () => {
         editingItemId = null;
         const formHtml = `
@@ -584,24 +574,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         openModal('Crear Nueva Plantilla', formHtml, handleSavePlantilla);
     });
-});
-
-supabaseClient.auth.onAuthStateChange((event, session) => {
-    if (session) {
-        authView.style.display = 'none';
-        mainView.style.display = 'block';
-        showSection('dashboard');
-        loadDataForSection('dashboard');
-    } else {
-        authView.style.display = 'flex';
-        mainView.style.display = 'none';
-    }
-});
-// Event Listeners
-document.addEventListener('DOMContentLoaded', () => {
-    // ... tus event listeners existentes para login, modales, etc...
-
-    // --- INICIO: LÓGICA PARA NAVEGACIÓN MÓVIL ---
+     // --- INICIO: LÓGICA PARA NAVEGACIÓN MÓVIL ---
 
     // Función para abrir el menú
     const openMobileMenu = () => {
@@ -636,4 +609,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- FIN: LÓGICA PARA NAVEGACIÓN MÓVIL ---
+});
+
+supabaseClient.auth.onAuthStateChange((event, session) => {
+    if (session) {
+        authView.style.display = 'none';
+        mainView.style.display = 'block';
+        showSection('dashboard');
+        loadDataForSection('dashboard');
+    } else {
+        authView.style.display = 'flex';
+        mainView.style.display = 'none';
+    }
 });
