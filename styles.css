@@ -1,0 +1,29 @@
+/* Fuente principal para el cuerpo del documento */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Estilo personalizado para la barra de desplazamiento */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Ocultar secciones de contenido por defecto */
+.content-section {
+    display: none;
+}
+
+/* Mostrar la sección que tiene la clase 'active' */
+.content-section.active {
+    display: block;
+}
